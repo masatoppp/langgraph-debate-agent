@@ -4,7 +4,7 @@
 
 ユーザが入力した議題について、Debater A / Bが異なる立場から討論し、最後にJudgeが議論内容を評価するLangGraphベースのLLMアプリケーションです。
 
-入力された議題は、まずTopic Validatorによって討論対象として適切か判定され、討論可能な場合のみ後続処理へ進みます。
+入力された議題は、まずTopic Validatorによって討論対象として適切かどうかを判定され、討論可能な場合のみ後続処理へ進みます。
 
 討論前には「分析型 / 実践型」の討論アプローチをDebater A / Bへランダムに割り当て、Persona Generatorがそれぞれのアプローチに沿った人物像を生成します。Debater A / Bは相手の主張を踏まえながら複数ターンの議論を行います。
 
@@ -23,7 +23,7 @@ Topic Validator、Persona Generator、Debater A / B、Judgeという複数の役
 主な実装・設計ポイントは以下です。
 
 - LangGraphによる状態管理・条件分岐・討論ループ
-- LCELによるPrompt / LLM / Output Parserのチェーン構成
+- LCELによるPrompt / LLMのチェーン構成
 - Pydantic + Structured Outputによる出力形式の固定
 - Personaを用いた役割ベースのエージェント設計
 - APIコストを意識したコンテキスト設計
@@ -245,7 +245,7 @@ Topic Validatorによる条件分岐や、Debater A / Bの討論継続判定をG
 
 ### LCEL
 
-各Node内部でPrompt / LLM / Output Parserを接続するために使用しています。
+各Node内部でPromptとLLMを接続し、一連のLLM処理をチェーンとして構成するために使用しています。
 
 LangGraphがアプリケーション全体の処理フローを担当し、LCELが各Node内部のLLM処理を担当する構成です。
 
@@ -360,7 +360,7 @@ Streamlitからは次のインターフェースで呼び出します。
 result = run_debate(topic, api_key)
 ```
 
-### `debate_agent.ipynb`
+### `06_LangGraphを利用した討論エージェント.ipynb`
 
 実装内容を段階的に確認するための技術解説用Notebookです。
 
@@ -397,13 +397,23 @@ git clone https://github.com/masatoppp/langgraph-debate-agent.git
 cd langgraph-debate-agent
 ```
 
-または、GitHubの **Download ZIP** から取得して展開してください。
+GitHubの **Download ZIP** から取得した場合は、ZIPを展開し、ターミナルで展開先のフォルダへ移動してください。
+
+例：
+
+```bash
+cd <ZIPを展開したフォルダのパス>
+```
+
+`<ZIPを展開したフォルダのパス>` の部分は、実際の展開先に置き換えてください。
 
 ### 2. Python環境を作成
 
 Python 3.11を想定しています。
 
 #### Anacondaの場合
+
+例として、`debate_agent` という名前のConda環境を作成します。
 
 ```bash
 conda create -n debate_agent python=3.11 -y
