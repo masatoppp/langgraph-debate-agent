@@ -324,6 +324,8 @@ langgraph-debate-agent/
 ├─ app.py
 ├─ debate_agent.py
 ├─ 06_LangGraphを利用した討論エージェント.ipynb
+├─ images/
+│  └─ webui.png
 ├─ requirements.txt
 ├─ README.md
 └─ .gitignore
@@ -365,6 +367,12 @@ result = run_debate(topic, api_key)
 実装内容を段階的に確認するための技術解説用Notebookです。
 
 LangGraph、LCEL、Structured Output、Persona、Judgeなどの実装と設計意図を確認できます。
+
+### `images/webui.png`
+
+Streamlit版Debate Agentのトップ画面です。
+
+README上でアプリケーションのWeb UIを確認できるようにしています。
 
 ---
 
@@ -463,6 +471,8 @@ python -m streamlit run app.py
 ```
 
 起動後、ブラウザでDebate AgentのWeb UIが表示されます。
+
+![Debate Agent Web UI](images/webui.png)
 
 ### 5. OpenAI API Keyを入力
 
