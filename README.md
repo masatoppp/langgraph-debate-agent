@@ -323,7 +323,7 @@ Notebook、Web UI、エージェント本体もそれぞれ役割を分けて確
 langgraph-debate-agent/
 ├─ app.py
 ├─ debate_agent.py
-├─ debate_agent.ipynb
+├─ 06_LangGraphを利用した討論エージェント.ipynb
 ├─ requirements.txt
 ├─ README.md
 └─ .gitignore
